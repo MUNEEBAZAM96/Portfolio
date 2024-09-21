@@ -184,37 +184,46 @@
     </div>
 
     <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("i230100@isb.nu.edu.pk"); // Replace with your EmailJS user ID
+        })();
+    
         function opentab(tabName) {
             const tabContents = document.querySelectorAll('.tab-contents');
             tabContents.forEach(content => {
                 content.classList.remove('active-tab');
             });
-
+    
             const tabLinks = document.querySelectorAll('.tab-links');
             tabLinks.forEach(link => {
                 link.classList.remove('active-link');
             });
-
+    
             document.getElementById(tabName).classList.add('active-tab');
             document.querySelector(`.tab-links[onclick*='${tabName}']`).classList.add('active-link');
         }
-
+    
         // Form submission handling
         const form = document.querySelector('form[name="submit-to-google-sheet"]');
         form.addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent the default form submission
             const msgElement = document.getElementById('msg');
-
-            // Replace the following line with your email handling logic
-            const emailSent = true; // Simulate email sending
-
-            if (emailSent) {
-                msgElement.textContent = 'Your message has been sent!';
-                form.reset(); // Reset the form
-            } else {
-                msgElement.textContent = 'There was a problem sending your message.';
-            }
+    
+            const templateParams = {
+                from_name: form.name.value,
+                from_email: form.email.value,
+                message: form.message.value,
+            };
+    
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then((response) => {
+                    msgElement.textContent = 'Your message has been sent!';
+                    form.reset(); // Reset the form
+                }, (error) => {
+                    msgElement.textContent = 'There was a problem sending your message.';
+                    console.error('EmailJS Error:', error);
+                });
         });
     </script>
-</body>
-</html>
+    
