@@ -52,7 +52,6 @@ var tablinks = document.getElementsByClassName("tab-links");
             })
             .catch(error => console.error('Error!', error.message))
         })
-       
             document.addEventListener('DOMContentLoaded', function() {
                 const text = "Muneeb Ur Rehman\nFront End Developer, C++ Game Developer";
                 let index = 0;
@@ -65,7 +64,6 @@ var tablinks = document.getElementsByClassName("tab-links");
                         setTimeout(typeWriter, speed);
                     }
                 }
-            
                 typeWriter();
             });
             
