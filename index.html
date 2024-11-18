@@ -4,109 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Webpage</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/9bd8c2a478.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-gray-900 text-gray-100">
-    <div id="header" class="min-h-screen">
-        <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center py-4">
-                <img src="images/logo_Muneeb.jpg" class="w-16 h-16 rounded-full" alt="Logo">
-                <ul class="flex space-x-6">
-                    <li><a href="#header" class="hover:text-crimson">me</a></li>
-                    <li><a href="#about" class="hover:text-crimson">About</a></li>
-                    <li><a href="#services" class="hover:text-crimson">Services</a></li>
-                    <li><a href="#portfolio" class="hover:text-crimson">Portfolio</a></li>
-                    <li><a href="#contact" class="hover:text-crimson">Contact</a></li>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo_Muneeb.jpg" class="logo" alt="Logo">
+                <ul>
+                    <li><a href="#header">Ho</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="mt-20">
-                <h1 class="text-5xl font-poppins font-bold">
+            <div class="header-text">
+                <br>
+                <h1 style="color:#fff; font-family:Poppins">
                     Muneeb Ur Rehman <br> 
-                    <span class="text-crimson font-serif">
-                        Front End Developer, C++ Game Developer
+                    <span style="color: crimson; font-family:'Times New Roman', Times, serif">
+                        Front End Developer, C++ Game Developer, <br> 
+                        
                     </span>
                 </h1>
             </div>
         </div>
     </div>
-
-    <div id="about" class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <img src="images/My.jpg" alt="" class="rounded-lg w-full">
+    <!--- ---------about--------  -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/My.jpg" alt="">
                 </div>
-                <div>
-                    <h1 class="text-3xl font-bold mb-6">About Me</h1>
-                    <p class="text-gray-300 mb-8">
-                        I am a versatile Game Developer and Front-End Web Developer with a strong foundation in C++. In the realm of game development, I specialize in using GLUT and SFML to create interactive and visually compelling games. My expertise includes implementing game mechanics, rendering graphics, and optimizing performance to deliver smooth and immersive gaming experiences.
+                <div class="about-col-2">
+                    <h1 class="sub-title">
+                        About Me
+                    </h1>
+                    <p>
+                        am a versatile Game Developer and Front-End Web Developer with a strong foundation in C++. In the realm of game development, I specialize in using GLUT and SFML to create interactive and visually compelling games. My expertise includes implementing game mechanics, rendering graphics, and optimizing performance to deliver smooth and immersive gaming experiences.
 
                         As a Front-End Developer, I have a deep understanding of HTML and CSS, with a particular focus on CSS animations. I excel at bringing web designs to life, creating responsive, dynamic, and visually appealing websites. My ability to blend technical skills in both game development and front-end design allows me to craft engaging experiences across different digital platforms.
                     </p>
 
-                    <div class="flex space-x-6 mb-6">
-                        <button onclick="opentab('Services')" class="tab-links px-4 py-2 hover:bg-crimson hover:text-white rounded">Services</button>
-                        <button onclick="opentab('Customers')" class="tab-links px-4 py-2 hover:bg-crimson hover:text-white rounded">Customers</button>
-                        <button onclick="opentab('Education')" class="tab-links px-4 py-2 hover:bg-crimson hover:text-white rounded">Education</button>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('Services')">Services</p>
+                        <p class="tab-links" onclick="opentab('Customers')">Customers</p>
+                        <p class="tab-links" onclick="opentab('Education')">Education</p>
                     </div>
 
-                    <div id="Services" class="tab-contents">
-                        <ul class="space-y-4">
+                    <div class="tab-contents active-tab" id="Services">
+                        <ul>
                             <li>
-                                <span class="text-crimson font-bold">Editing</span><br> Comprehensive editing services
+                                <span>Editing</span><br> Comprehensive editing services
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">SEO</span><br> SEO-focused content and copywriting
+                                <span>SEO</span><br> SEO-focused content and copywriting
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Evaluation</span><br> Manuscript evaluation
+                                <span>Evaluation</span><br> Manuscript evaluation
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Review</span><br> Sensitivity review
+                                <span>Review</span><br> Sensitivity review
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Auditing</span><br> Website SEO audit
+                                <span>Auditing</span><br> Website SEO audit
                             </li>
                         </ul>
                     </div>
 
-                    <div id="Customers" class="tab-contents hidden">
-                        <ul class="space-y-4">
+                    <div class="tab-contents" id="Customers">
+                        <ul>
                             <li>
-                                <span class="text-crimson font-bold">Editing</span><br> Comprehensive editing services
+                                <span>Editing</span><br> Comprehensive editing services
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">SEO</span><br> SEO-focused content and copywriting
+                                <span>SEO</span><br> SEO-focused content and copywriting
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Evaluation</span><br> Manuscript evaluation
+                                <span>Evaluation</span><br> Manuscript evaluation
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Review</span><br> Sensitivity review
+                                <span>Revi</span><br> Sensitivity review
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Auditing</span><br> Website SEO audit
+                                <span>Auditing</span><br> Website SEO audit
                             </li>
                         </ul>
                     </div>
 
-                    <div id="Education" class="tab-contents hidden">
-                        <ul class="space-y-4">
+                    <div class="tab-contents" id="Education">
+                        <ul>
                             <li>
-                                <span class="text-crimson font-bold">Editing</span><br> Comprehensive editing services
+                                <span>Editing</span><br> Comprehensive editing services
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">SEO</span><br> SEO-focused content and copywriting
+                                <span>SEO</span><br> SEO-focused content and copywriting
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Evaluation</span><br> Manuscript evaluation
+                                <span>Evaluation</span><br> Manuscript evaluation
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Review</span><br> Sensitivity review
+                                <span>Review</span><br> Sensitivity review
                             </li>
                             <li>
-                                <span class="text-crimson font-bold">Auditing</span><br> Website SEO audit
+                                <span>Audting</span><br> Website SEO audit
                             </li>
                         </ul>
                     </div>
@@ -114,168 +118,199 @@
             </div>
         </div>
     </div>
-
-    <div id="services" class="py-16 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mb-12 text-center">My Services</h1>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-900 p-8 rounded-lg">
-                    <i class="fa-solid fa-code text-4xl text-crimson mb-4"></i>
-                    <h2 class="text-xl font-bold mb-4">Web Design</h2>
-                    <p class="text-gray-300 mb-4">Description will be written here</p>
-                    <a href="#" class="text-crimson hover:underline">Learn More</a>
-                </div>
-                <div class="bg-gray-900 p-8 rounded-lg">
-                    <i class="fa-brands fa-apple text-4xl text-crimson mb-4"></i>
-                    <h2 class="text-xl font-bold mb-4">App Design</h2>
-                    <p class="text-gray-300 mb-4">Description will be written here</p>
-                    <a href="#" class="text-crimson hover:underline">Learn More</a>
-                </div>
-                <div class="bg-gray-900 p-8 rounded-lg">
-                    <i class="fas fa-crop-alt text-4xl text-crimson mb-4"></i>
-                    <h2 class="text-xl font-bold mb-4">UI/UX</h2>
-                    <p class="text-gray-300 mb-4">Description will be written here</p>
-                    <a href="#" class="text-crimson hover:underline">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="portfolio" class="py-16">
-        <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mb-12 text-center">My Work</h1>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="relative group">
-                    <img src="images/work-1.png" alt="" class="w-full rounded-lg">
-                    <div class="absolute inset-0 bg-black bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex flex-col justify-center items-center p-6">
-                        <h3 class="text-xl font-bold mb-4">Business Websites</h3>
-                        <p class="text-center mb-4">I work on various Business websites. In recent times, I built a cloth website for clients.</p>
-                        <a href="#" class="text-crimson hover:text-white"><i class="fas fa-external-link-alt text-2xl"></i></a>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <img src="images/work-2.png" alt="" class="w-full rounded-lg">
-                    <div class="absolute inset-0 bg-black bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex flex-col justify-center items-center p-6">
-                        <h3 class="text-xl font-bold mb-4">Business Websites</h3>
-                        <p class="text-center mb-4">I work on various Business websites. In recent times, I built a cloth website for clients.</p>
-                        <a href="#" class="text-crimson hover:text-white"><i class="fas fa-external-link-alt text-2xl"></i></a>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <img src="images/work-3.png" alt="" class="w-full rounded-lg">
-                    <div class="absolute inset-0 bg-black bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex flex-col justify-center items-center p-6">
-                        <h3 class="text-xl font-bold mb-4">Business Websites</h3>
-                        <p class="text-center mb-4">I work on various Business websites. In recent times, I built a cloth website for clients.</p>
-                        <a href="#" class="text-crimson hover:text-white"><i class="fas fa-external-link-alt text-2xl"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-8">
-                <a href="#" class="inline-block px-6 py-3 bg-crimson text-white rounded-lg hover:bg-red-700">See More</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="contact" class="py-16 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <!-- My Services -->
+     <div id="services">
+        <div class="container">
+            <h1 class="sub-title"> My Services </h1>
+            <div class="serviceslist">
                 <div>
-                    <h1 class="text-3xl font-bold mb-8">Contact Me</h1>
-                    <p class="flex items-center mb-4"><i class="fas fa-paper-plane mr-4 text-crimson"></i>contact@example.com</p>
-                    <p class="flex items-center mb-8"><i class="fas fa-phone-square-alt mr-4 text-crimson"></i>09504634532</p>
-                    <div class="flex space-x-4 mb-8">
-                        <a href="#" class="text-2xl text-crimson hover:text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-2xl text-crimson hover:text-white"><i class="fab fa-twitter-square"></i></a>
-                        <a href="https://www.instagram.com/muneeb.rajpot.14/" class="text-2xl text-crimson hover:text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/" class="text-2xl text-crimson hover:text-white"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                    <a href="images/my-cv.pdf" download class="inline-block px-6 py-3 bg-crimson text-white rounded-lg hover:bg-red-700">Download CV</a>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Design</h2>
+                    <p> Discription will be Written here </p>
+                    <a href="#">Learn More</a>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-bold mb-6">Feel Free To Ask</h2>
-                    <form name="submit-to-google-sheet" class="space-y-4">
-                        <input type="text" name="Name" placeholder="Your Name" required class="w-full p-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-crimson">
-                        <input type="email" name="Email" placeholder="Your Email" required class="w-full p-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-crimson">
-                        <textarea name="Message" rows="6" placeholder="Your Message" id="Message" class="w-full p-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-crimson"></textarea>
-                        <button type="submit" class="px-6 py-3 bg-crimson text-white rounded-lg hover:bg-red-700">Submit</button>
+                    <i class="fa-brands fa-apple"></i>
+                    <h2>App Design Design</h2>
+                    <p> 
+                        Discription Will be Written Here 
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div>
+                    <i class="fas fa-crop-alt"></i>
+                    <h2>UI/UX</h2>
+                    <p> 
+                        Discription Will be Written Here 
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Portfolio -->
+        <div id="portfolio">
+            <div class="container">
+                <h1 class="subtitle"> My Work  </h1>
+                <div class="worklist">
+                    <div class="work-1">
+                        <img src="images/work-1.png" alt="">
+                        <div class="layer">
+                            <h3>
+                                Bussiness Web sites 
+                            </h3>
+                            <p>
+                                I work on Various Business Web sites.
+                                In Recent Times. I Build a cloth Web Site For the Clients.
+                                you Can See it By Clicking on the link.
+                            </p>
+                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="work-1">
+                        <img src="images/work-2.png" alt="">
+                        <div class="layer">
+                            <h3>
+                                Bussiness Web sites 
+                            </h3>
+                            <p>
+                                I work on Various Business Web sites.
+                                In Recent Times. I Build a cloth Web Site For the Clients.
+                                you Can See it By Clicking on the link.
+                            </p>
+                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="work-1">
+                        <img src="images/work-3.png" alt="">
+                        <div class="layer">
+                            <h3>
+                                Bussiness Web sites 
+                            </h3>
+                            <p>
+                                I work on Various Business Web sites.
+                                In Recent Times. I Build a cloth Web Site For the Clients.
+                                you Can See it By Clicking on the link.
+                            </p>
+                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn">
+                    <a href=""> See More </a>
+                </div>
+            </div>
+        </div>
+    <!-- ------------------------------  Contact Me -------------------->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contactleft">
+                        <h1 class="Sub-title">
+                            Contact Me 
+                        </h1>
+                        <p><i class="fas fa-paper-plane"></i> contact@example.com</p>
+                        <p><i class="fas fa-phone-square-alt"></i>09504634532</p>
+                        <div class="Socialicons">
+                            <a href=""><i class="fab fa-facebook"></i></a>
+                            <a href=""><i class="fab fa-twitter-square"></i></a>
+                            <a href="https://www.instagram.com/muneeb.rajpot.14/"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/"><i class="fab fa-linkedin"></i></a>
+                        </div>
+
+                        <a href="images/my-cv.pdf" download class="btn btn2">Download CV </a>
+                </div>
+                <div class="contactright">
+                    <h2> Feel Free To Ask </h2>
+                    <form name="submit-to-google-sheet" action="">
+                        <input type="text" name="Name " placeholder="yours Name" required>
+                        <input type="email" name="Email" placeholder="yours Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message" id="Message"></textarea>
+                        <button type="Submit" class="btn btn2" > Submit </button>
+
                     </form>
-                    <span id="msg" class="block mt-4"></span>
+                    <span id="msg"> Hello </span>
+
+
                 </div>
             </div>
         </div>
-        <div class="text-center mt-16">
-            <p>Copyright <i class="fa-regular fa-copyright text-white"></i> <span class="text-crimson">kevin</span>. Made with <i class="fas fa-heart text-crimson"></i> by Easy Tutorials</p>
+        <div class="copywrite">
+            <p> copywrite <i class="fa-regular fa-copyright" style="color: #fff;"></i> <span style="color: #ff0045;"> kevin </span>. Made with <i class="fas fa-heart"></i> by easy Tutorials</p>
         </div>
     </div>
 
-    <script src="javascript.js"></script>
-    <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
+   <!-- JavaScript for Tabs -->
+<script src="javascript.js"></script> <!-- Use 'src' instead of 'href' -->
 
-        function opentab(event, tabname) {
-            for (let tablink of tablinks) {
-                tablink.classList.remove("active-link");
-            }
-            for (let tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
-            document.getElementById(tabname).classList.add("active-tab");
-            event.currentTarget.classList.add("active-link");
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(event, tabname) { // Pass event as a parameter
+        for (let tablink of tablinks) {
+            tablink.classList.remove("active-link");
         }
-
-        var sidemeu = document.getElementById("sidemeu");
-
-        function openmenu() {
-            sidemeu.style.right = "0";
+        for (let tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
         }
+        document.getElementById(tabname).classList.add("active-tab");
+        event.currentTarget.classList.add("active-link");
+    }
 
-        function closemenu() {
-            sidemeu.style.right = "-200px";
-        }
+    var sidemeu = document.getElementById("sidemeu");
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+    function openmenu() {
+        sidemeu.style.right = "0";
+    }
+
+    function closemenu() {
+        sidemeu.style.right = "-200px";
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         });
+    });
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzIoXfl6r3oo8Izq3vTTYLNrGJJLRu9kf7oEEsbQTMtsVOONYpfEbIJLbO6X2Em0_iR/exec';
-        const form = document.forms['submit-to-google-sheet'];
-        const msg = document.getElementById("msg");
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzIoXfl6r3oo8Izq3vTTYLNrGJJLRu9kf7oEEsbQTMtsVOONYpfEbIJLbO6X2Em0_iR/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const msg = document.getElementById("msg");
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                    msg.innerHTML = "Message sent successfully";
-                    setTimeout(function () {
-                        msg.innerHTML = "";
-                    }, 5000);
-                    form.reset();
-                })
-                .catch(error => console.error('Error!', error.message));
-        });
+    form.addEventListener('submit', e => {
+        e.preventDefault(); // Prevent the default form submission
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(function () {
+                    msg.innerHTML = "";
+                }, 5000);
+                form.reset(); // Reset the form after submission
+            })
+            .catch(error => console.error('Error!', error.message));
+    });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const text = "Muneeb Ur Rehman\nFront End Developer, C++ Game Developer";
-            let index = 0;
-            const speed = 100;
+    document.addEventListener('DOMContentLoaded', function () {
+        const text = "Muneeb Ur Rehman\nFront End Developer, C++ Game Developer";
+        let index = 0;
+        const speed = 100; // Adjust typing speed here
 
-            function typeWriter() {
-                if (index < text.length) {
-                    document.getElementById("typewriter").innerHTML += text.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, speed);
-                }
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
             }
+        }
 
-            typeWriter();
-        });
-    </script>
+        typeWriter();
+    });
+</script>
 </body>
 </html>
