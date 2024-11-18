@@ -4,8 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Webpage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/9bd8c2a478.js" crossorigin="anonymous"></script>
+    <script src="javascript.js" defer></script>
+    <script>
+        tailwind.config = {
+            content: ["./src/**/*.{js,jsx,ts,tsx}"],
+            theme: {
+                extend: {
+                    animation: {
+                        'fadeIn': 'fadeIn 1s ease-in-out',
+                        'slideIn': 'slideIn 1s ease-in-out', 
+                        'textPopUp': 'textPopUp 2s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        textPopUp: {
+                            '0%': { transform: 'scale(0)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="header">
@@ -25,7 +55,7 @@
                 <h1 style="color:#fff; font-family:Poppins">
                     Muneeb Ur Rehman <br> 
                     <span style="color: crimson; font-family:'Times New Roman', Times, serif">
-                        Front End Developer, C++ Game Developer, <br> 
+                        Solidity Smart Contract Developer With a Passion for Building Secure and Efficient Blockchain Applications, <br> 
                         
                     </span>
                 </h1>
@@ -44,7 +74,7 @@
                         About Me
                     </h1>
                     <p>
-                        am a versatile Game Developer and Front-End Web Developer with a strong foundation in C++. In the realm of game development, I specialize in using GLUT and SFML to create interactive and visually compelling games. My expertise includes implementing game mechanics, rendering graphics, and optimizing performance to deliver smooth and immersive gaming experiences.
+                        am a versatile Block chain Developer and  Web3 Developer with a strong foundation in solidity(Smart Contract). In the realm of game development, I specialize in using GLUT and SFML to create interactive and visually compelling games. My expertise includes implementing game mechanics, rendering graphics, and optimizing performance to deliver smooth and immersive gaming experiences.
 
                         As a Front-End Developer, I have a deep understanding of HTML and CSS, with a particular focus on CSS animations. I excel at bringing web designs to life, creating responsive, dynamic, and visually appealing websites. My ability to blend technical skills in both game development and front-end design allows me to craft engaging experiences across different digital platforms.
                     </p>
@@ -165,7 +195,7 @@
                                 In Recent Times. I Build a cloth Web Site For the Clients.
                                 you Can See it By Clicking on the link.
                             </p>
-                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                     <div class="work-1">
@@ -179,7 +209,7 @@
                                 In Recent Times. I Build a cloth Web Site For the Clients.
                                 you Can See it By Clicking on the link.
                             </p>
-                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                     <div class="work-1">
@@ -193,7 +223,7 @@
                                 In Recent Times. I Build a cloth Web Site For the Clients.
                                 you Can See it By Clicking on the link.
                             </p>
-                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
@@ -242,13 +272,11 @@
     </div>
 
    <!-- JavaScript for Tabs -->
-<script src="javascript.js"></script> <!-- Use 'src' instead of 'href' -->
-
 <script>
     var tablinks = document.getElementsByClassName("tab-links");
     var tabcontents = document.getElementsByClassName("tab-contents");
 
-    function opentab(event, tabname) { // Pass event as a parameter
+    function opentab(event, tabname) {
         for (let tablink of tablinks) {
             tablink.classList.remove("active-link");
         }
@@ -284,14 +312,14 @@
     const msg = document.getElementById("msg");
 
     form.addEventListener('submit', e => {
-        e.preventDefault(); // Prevent the default form submission
+        e.preventDefault();
         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
             .then(response => {
                 msg.innerHTML = "Message sent successfully";
                 setTimeout(function () {
                     msg.innerHTML = "";
                 }, 5000);
-                form.reset(); // Reset the form after submission
+                form.reset();
             })
             .catch(error => console.error('Error!', error.message));
     });
@@ -299,7 +327,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const text = "Muneeb Ur Rehman\nFront End Developer, C++ Game Developer";
         let index = 0;
-        const speed = 100; // Adjust typing speed here
+        const speed = 100;
 
         function typeWriter() {
             if (index < text.length) {
