@@ -4,190 +4,313 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Webpage</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/9bd8c2a478.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-dark text-light">
-    <header id="header" class="min-vh-100 d-flex align-items-center">
+<body>
+    <div id="header">
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="images/logo_Muneeb.jpg" class="logo img-fluid" alt="Logo" style="max-width: 150px;">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="#header">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <nav>
+                <img src="images/logo_Muneeb.jpg" class="logo" alt="Logo">
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
-
-            <div class="text-center mt-5 header-text">
-                <h1 class="display-3 fw-bold text-white">
-                    Muneeb Ur Rehman
-                    <br>
-                    <span class="text-danger fw-light" style="font-family: 'Times New Roman', serif">
-                        Solidity Smart Contract Developer With a Passion for Building Secure and Efficient Blockchain Applications
+            <div class="header-text">
+                <br>
+                <h1 style="color:#fff; font-family:Poppins">
+                    Muneeb Ur Rehman <br> 
+                    <span style="color: crimson; font-family:'Times New Roman', Times, serif">
+                        Solidity Smart Contract Developer With a Passion for Building Secure and Efficient Blockchain Applications, <br> 
+                        
                     </span>
                 </h1>
             </div>
         </div>
-    </header>
-
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="images/My.jpg" alt="" class="img-fluid rounded shadow-lg">
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="display-4 mb-4">About Me</h2>
-                    <p class="lead">
-                        I am a versatile Blockchain Developer and Web3 Developer with a strong foundation in Solidity (Smart Contract). In the realm of game development, I specialize in using GLUT and SFML to create interactive and visually compelling games. My expertise includes implementing game mechanics, rendering graphics, and optimizing performance to deliver smooth and immersive gaming experiences.
-                    </p>
-                    <p class="lead">
-                        As a Front-End Developer, I have a deep understanding of HTML and CSS, with a particular focus on CSS animations. I excel at bringing web designs to life, creating responsive, dynamic, and visually appealing websites.
-                    </p>
-
-                    <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Services">Services</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Customers">Customers</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Education">Education</button>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content mt-3">
-                        <div class="tab-pane fade show active" id="Services">
-                            <ul class="list-group list-group-flush bg-transparent">
-                                <li class="list-group-item bg-transparent text-light">
-                                    <h5 class="text-primary">Editing</h5>
-                                    Comprehensive editing services
-                                </li>
-                                <li class="list-group-item bg-transparent text-light">
-                                    <h5 class="text-primary">SEO</h5>
-                                    SEO-focused content and copywriting
-                                </li>
-                                <li class="list-group-item bg-transparent text-light">
-                                    <h5 class="text-primary">Evaluation</h5>
-                                    Manuscript evaluation
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Similar structure for Customers and Education tabs -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-5 bg-gradient">
-        <div class="container">
-            <h2 class="display-4 text-center mb-5">My Services</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 bg-dark text-light border-primary">
-                        <div class="card-body text-center">
-                            <i class="fa-solid fa-code fa-3x mb-3 text-primary"></i>
-                            <h3 class="card-title">Web Design</h3>
-                            <p class="card-text">Description will be written here</p>
-                            <a href="#" class="btn btn-outline-primary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Similar cards for other services -->
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-5">
-        <div class="container">
-            <h2 class="display-4 text-center mb-5">My Work</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card bg-dark">
-                        <img src="images/work-1.png" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                            <h4 class="card-title">Business Websites</h4>
-                            <p class="card-text">I work on various Business websites. Recently, I built a cloth website for clients.</p>
-                            <a href="#" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Similar cards for other portfolio items -->
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-5">
+    </div>
+    <!--- ---------about--------  -->
+    <div id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <h2 class="display-4 mb-4">Contact Me</h2>
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="fas fa-paper-plane me-2"></i>
-                        <p class="mb-0">contact@example.com</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <i class="fas fa-phone-square-alt me-2"></i>
-                        <p class="mb-0">09504634532</p>
-                    </div>
-                    <div class="social-icons mb-4">
-                        <a href="#" class="me-3 text-light fs-4"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="me-3 text-light fs-4"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/muneeb.rajpot.14/" class="me-3 text-light fs-4"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/" class="text-light fs-4"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                    <a href="images/my-cv.pdf" class="btn btn-primary" download>Download CV</a>
+                <div class="about-col-1">
+                    <img src="images/My.jpg" alt="">
                 </div>
-                <div class="col-lg-6">
-                    <div class="card bg-dark">
-                        <div class="card-body">
-                            <h3 class="card-title mb-4">Feel Free To Ask</h3>
-                            <form name="submit-to-google-sheet">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" name="Name" placeholder="Your Name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" name="Email" placeholder="Your Email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" name="Message" rows="6" placeholder="Your Message"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">Submit</button>
-                            </form>
-                            <div id="msg" class="mt-3"></div>
-                        </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">
+                        About Me
+                    </h1>
+                    <p>
+                        am a versatile Block chain Developer and  Web3 Developer with a strong foundation in solidity(Smart Contract). In the realm of game development, I specialize in using GLUT and SFML to create interactive and visually compelling games. My expertise includes implementing game mechanics, rendering graphics, and optimizing performance to deliver smooth and immersive gaming experiences.
+
+                        As a Front-End Developer, I have a deep understanding of HTML and CSS, with a particular focus on CSS animations. I excel at bringing web designs to life, creating responsive, dynamic, and visually appealing websites. My ability to blend technical skills in both game development and front-end design allows me to craft engaging experiences across different digital platforms.
+                    </p>
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('Services')">Services</p>
+                        <p class="tab-links" onclick="opentab('Customers')">Customers</p>
+                        <p class="tab-links" onclick="opentab('Education')">Education</p>
+                    </div>
+
+                    <div class="tab-contents active-tab" id="Services">
+                        <ul>
+                            <li>
+                                <span>Editing</span><br> Comprehensive editing services
+                            </li>
+                            <li>
+                                <span>SEO</span><br> SEO-focused content and copywriting
+                            </li>
+                            <li>
+                                <span>Evaluation</span><br> Manuscript evaluation
+                            </li>
+                            <li>
+                                <span>Review</span><br> Sensitivity review
+                            </li>
+                            <li>
+                                <span>Auditing</span><br> Website SEO audit
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="Customers">
+                        <ul>
+                            <li>
+                                <span>Editing</span><br> Comprehensive editing services
+                            </li>
+                            <li>
+                                <span>SEO</span><br> SEO-focused content and copywriting
+                            </li>
+                            <li>
+                                <span>Evaluation</span><br> Manuscript evaluation
+                            </li>
+                            <li>
+                                <span>Revi</span><br> Sensitivity review
+                            </li>
+                            <li>
+                                <span>Auditing</span><br> Website SEO audit
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="Education">
+                        <ul>
+                            <li>
+                                <span>Editing</span><br> Comprehensive editing services
+                            </li>
+                            <li>
+                                <span>SEO</span><br> SEO-focused content and copywriting
+                            </li>
+                            <li>
+                                <span>Evaluation</span><br> Manuscript evaluation
+                            </li>
+                            <li>
+                                <span>Review</span><br> Sensitivity review
+                            </li>
+                            <li>
+                                <span>Audting</span><br> Website SEO audit
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- My Services -->
+     <div id="services">
+        <div class="container">
+            <h1 class="sub-title"> My Services </h1>
+            <div class="serviceslist">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Design</h2>
+                    <p> Discription will be Written here </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-apple"></i>
+                    <h2>App Design Design</h2>
+                    <p> 
+                        Discription Will be Written Here 
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div>
+                    <i class="fas fa-crop-alt"></i>
+                    <h2>UI/UX</h2>
+                    <p> 
+                        Discription Will be Written Here 
+                    </p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+        </div>
+        </div>
 
-    <footer class="bg-dark text-center py-3">
-        <p class="mb-0">
-            Copyright <i class="fa-regular fa-copyright"></i> 
-            <span class="text-danger">kevin</span>. 
-            Made with <i class="fas fa-heart text-danger"></i> by Easy Tutorials
-        </p>
-    </footer>
+        <!-- Portfolio -->
+        <div id="portfolio">
+            <div class="container">
+                <h1 class="subtitle"> My Work  </h1>
+                <div class="worklist">
+                    <div class="work-1">
+                        <img src="images/work-1.png" alt="">
+                        <div class="layer">
+                            <h3>
+                                Bussiness Web sites 
+                            </h3>
+                            <p>
+                                I work on Various Business Web sites.
+                                In Recent Times. I Build a cloth Web Site For the Clients.
+                                you Can See it By Clicking on the link.
+                            </p>
+                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="work-1">
+                        <img src="images/work-2.png" alt="">
+                        <div class="layer">
+                            <h3>
+                                Bussiness Web sites 
+                            </h3>
+                            <p>
+                                I work on Various Business Web sites.
+                                In Recent Times. I Build a cloth Web Site For the Clients.
+                                you Can See it By Clicking on the link.
+                            </p>
+                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="work-1">
+                        <img src="images/work-3.png" alt="">
+                        <div class="layer">
+                            <h3>
+                                Bussiness Web sites 
+                            </h3>
+                            <p>
+                                I work on Various Business Web sites.
+                                In Recent Times. I Build a cloth Web Site For the Clients.
+                                you Can See it By Clicking on the link.
+                            </p>
+                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn">
+                    <a href=""> See More </a>
+                </div>
+            </div>
+        </div>
+    <!-- ------------------------------  Contact Me -------------------->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contactleft">
+                        <h1 class="Sub-title">
+                            Contact Me 
+                        </h1>
+                        <p><i class="fas fa-paper-plane"></i> contact@example.com</p>
+                        <p><i class="fas fa-phone-square-alt"></i>09504634532</p>
+                        <div class="Socialicons">
+                            <a href=""><i class="fab fa-facebook"></i></a>
+                            <a href=""><i class="fab fa-twitter-square"></i></a>
+                            <a href="https://www.instagram.com/muneeb.rajpot.14/"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/"><i class="fab fa-linkedin"></i></a>
+                        </div>
 
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="javascript.js"></script>
+                        <a href="images/my-cv.pdf" download class="btn btn2">Download CV </a>
+                </div>
+                <div class="contactright">
+                    <h2> Feel Free To Ask </h2>
+                    <form name="submit-to-google-sheet" action="">
+                        <input type="text" name="Name " placeholder="yours Name" required>
+                        <input type="email" name="Email" placeholder="yours Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message" id="Message"></textarea>
+                        <button type="Submit" class="btn btn2" > Submit </button>
+
+                    </form>
+                    <span id="msg"> Hello </span>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="copywrite">
+            <p> copywrite <i class="fa-regular fa-copyright" style="color: #fff;"></i> <span style="color: #ff0045;"> kevin </span>. Made with <i class="fas fa-heart"></i> by easy Tutorials</p>
+        </div>
+    </div>
+
+   <!-- JavaScript for Tabs -->
+<script src="javascript.js"></script> <!-- Use 'src' instead of 'href' -->
+
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(event, tabname) { // Pass event as a parameter
+        for (let tablink of tablinks) {
+            tablink.classList.remove("active-link");
+        }
+        for (let tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
+        }
+        document.getElementById(tabname).classList.add("active-tab");
+        event.currentTarget.classList.add("active-link");
+    }
+
+    var sidemeu = document.getElementById("sidemeu");
+
+    function openmenu() {
+        sidemeu.style.right = "0";
+    }
+
+    function closemenu() {
+        sidemeu.style.right = "-200px";
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzIoXfl6r3oo8Izq3vTTYLNrGJJLRu9kf7oEEsbQTMtsVOONYpfEbIJLbO6X2Em0_iR/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const msg = document.getElementById("msg");
+
+    form.addEventListener('submit', e => {
+        e.preventDefault(); // Prevent the default form submission
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(function () {
+                    msg.innerHTML = "";
+                }, 5000);
+                form.reset(); // Reset the form after submission
+            })
+            .catch(error => console.error('Error!', error.message));
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const text = "Muneeb Ur Rehman\nFront End Developer, C++ Game Developer";
+        let index = 0;
+        const speed = 100; // Adjust typing speed here
+
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        typeWriter();
+    });
+</script>
 </body>
 </html>
