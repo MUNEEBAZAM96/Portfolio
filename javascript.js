@@ -34,23 +34,54 @@ var tablinks = document.getElementsByClassName("tab-links");
             });
         });
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzIoXfl6r3oo8Izq3vTTYLNrGJJLRu9kf7oEEsbQTMtsVOONYpfEbIJLbO6X2Em0_iR/exec'
-        const form = document.forms['submit-to-google-sheet']
-        const msg = document.getElementById("msg")
-        
-        form.addEventListener('submit', e => {
-        e.preventDefault()
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                msg.innerHTML="Message sent successfully"
-                setTimeout(function(){
-                    msg.innerHTML = ""
+        // Initialize EmailJS
+        (function() {
+            // Replace these with your actual EmailJS user ID and template ID
+            emailjs.init("YOUR_USER_ID");
+        })();
 
-                },5000)
-                form.reset()
-            })
-            .catch(error => console.error('Error!', error.message))
-        })
+        // Update the form submission handler
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const msg = document.getElementById('msg');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            
+            // Disable the submit button during processing
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Get form data
+            const formData = {
+                name: this.querySelector('input[name="name"]').value,
+                email: this.querySelector('input[name="email"]').value,
+                message: this.querySelector('textarea[name="message"]').value,
+                to_email: 'muneebazam96@gmail.com'
+            };
+
+            // Send the email using EmailJS
+            emailjs.send('default_service', 'YOUR_TEMPLATE_ID', formData)
+                .then(function() {
+                    msg.innerHTML = "Message sent successfully!";
+                    msg.style.color = "#61b752";
+                    event.target.reset(); // Reset the form
+                    
+                    // Clear success message after 5 seconds
+                    setTimeout(function() {
+                        msg.innerHTML = "";
+                    }, 5000);
+                })
+                .catch(function(error) {
+                    msg.innerHTML = "Failed to send message. Please try again.";
+                    msg.style.color = "#ff004f";
+                    console.error('Email error:', error);
+                })
+                .finally(function() {
+                    // Re-enable the submit button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                });
+        });
 
         function initTypewriter() {
             const texts = [
