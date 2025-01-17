@@ -55,8 +55,8 @@ var tablinks = document.getElementsByClassName("tab-links");
         function initTypewriter() {
             const texts = [
                 "Muneeb Ur Rehman",
-                "Solidity Smart Contract Developer",
-                "Building Secure and Efficient Blockchain Applications"
+                "Smart Contract Developer",
+                "Building Blockchain Solutions"
             ];
             let textIndex = 0;
             let charIndex = 0;
