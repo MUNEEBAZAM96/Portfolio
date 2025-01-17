@@ -50,6 +50,7 @@ html {
     animation: slideIn 2s ease-in-out;
     position: relative;
     overflow: hidden;
+    padding-top: 100px; /* Add space for fixed nav */
 }
 #msg{
     color: #61b752;
@@ -78,65 +79,83 @@ html {
 nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    animation: fadeIn 2s ease-in-out;
-    padding-left: 170px; /* Add space for the fixed logo */
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 10%;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+nav.scrolled {
+    background: rgba(0, 0, 0, 0.98);
+    padding: 10px 10%;
 }
 
 .logo {
-    width: 150px;
-    position: fixed;
-    top: 20px;
+    width: 120px;
+    position: absolute;
     left: 10%;
-    z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 nav ul li {
     display: inline-block;
     list-style: none;
-    margin: 10px 20px;
+    margin: 0;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 18px;
-    position: relative;
-    transition: color 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
     padding: 8px 16px;
     border-radius: 20px;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff004f, #ff4b84);
+    border-radius: 20px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+nav ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 nav ul li a:hover {
-    color: #ff004f;
-    background: rgba(255, 0, 79, 0.1);
-    box-shadow: 0 0 20px rgba(255, 0, 79, 0.3);
-}
-
-nav ul li a::after {
-    content: '';
-    width: 0%;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: width 0.3s ease;
-}
-
-nav ul li a:hover::after {
-    width: 100%;
+    color: #fff;
+    background: transparent;
+    box-shadow: none;
 }
 
 .header-text {
@@ -633,4 +652,64 @@ nav ul li a:hover::after {
     .typing {
         animation: none;
     }
+    
+    #header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    }
+
+    /* Add scroll indicator */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+
+    .scroll-indicator:hover {
+        opacity: 1;
+    }
+
+    .scroll-indicator span {
+        color: #fff;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .scroll-indicator .mouse {
+        width: 30px;
+        height: 50px;
+        border: 2px solid #fff;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    .scroll-indicator .mouse::before {
+        content: '';
+        width: 4px;
+        height: 8px;
+        background: #fff;
+        border-radius: 2px;
+        animation: scroll 1.5s infinite;
+    }
+
+    @keyframes scroll {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(15px); opacity: 0; }
+    }
+}
     

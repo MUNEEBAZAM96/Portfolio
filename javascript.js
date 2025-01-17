@@ -120,9 +120,23 @@ var tablinks = document.getElementsByClassName("tab-links");
             });
         }
 
+        function handleHeaderScroll() {
+            const nav = document.querySelector('nav');
+            const scrollThreshold = 100;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > scrollThreshold) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             initTypewriter();
             handleScrollToTop();
+            handleHeaderScroll();
         });
             
         
