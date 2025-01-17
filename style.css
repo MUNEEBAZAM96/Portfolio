@@ -63,6 +63,7 @@ nav {
     justify-content: space-between;
     flex-wrap: wrap;
     animation: fadeIn 2s ease-in-out;
+    padding-left: 170px; /* Add space for the fixed logo */
 }
 
 @keyframes fadeIn {
@@ -76,11 +77,10 @@ nav {
 
 .logo {
     width: 150px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.logo:hover {
-    transform: scale(1.1);
+    position: fixed;
+    top: 20px;
+    left: 10%;
+    z-index: 1000;
 }
 
 nav ul li {
