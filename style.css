@@ -551,3 +551,24 @@ nav ul li a:hover::after {
         }
     }
     
+    #cursor {
+        animation: blink 0.75s step-end infinite;
+    }
+
+    @keyframes blink {
+        from, to { 
+            color: transparent; 
+        }
+        50% { 
+            color: crimson; 
+        }
+    }
+
+    #typewriter {
+        white-space: pre-line;
+    }
+
+    .typing {
+        animation: none;
+    }
+    

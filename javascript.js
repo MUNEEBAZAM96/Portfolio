@@ -1,4 +1,3 @@
-
 var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
 
@@ -52,19 +51,58 @@ var tablinks = document.getElementsByClassName("tab-links");
             })
             .catch(error => console.error('Error!', error.message))
         })
-            document.addEventListener('DOMContentLoaded', function() {
-                const text = "Muneeb Ur Rehman\nFront End Developer, C++ Game Developer";
-                let index = 0;
-                const speed = 100; // Adjust typing speed here
-            
-                function typeWriter() {
-                    if (index < text.length) {
-                        document.getElementById("typewriter").innerHTML += text.charAt(index);
-                        index++;
-                        setTimeout(typeWriter, speed);
+
+        function initTypewriter() {
+            const texts = [
+                "Muneeb Ur Rehman",
+                "Solidity Smart Contract Developer",
+                "Building Secure and Efficient Blockchain Applications"
+            ];
+            let textIndex = 0;
+            let charIndex = 0;
+            const typewriterElement = document.getElementById("typewriter");
+            const cursorElement = document.getElementById("cursor");
+            const typingSpeed = 100;
+            const deleteSpeed = 50;
+            const delayBetweenTexts = 2000;
+
+            function type() {
+                if (charIndex < texts[textIndex].length) {
+                    if (!cursorElement.classList.contains("typing")) {
+                        cursorElement.classList.add("typing");
                     }
+                    typewriterElement.textContent += texts[textIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    cursorElement.classList.remove("typing");
+                    setTimeout(erase, delayBetweenTexts);
                 }
-                typeWriter();
-            });
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                    if (!cursorElement.classList.contains("typing")) {
+                        cursorElement.classList.add("typing");
+                    }
+                    typewriterElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, deleteSpeed);
+                } else {
+                    cursorElement.classList.remove("typing");
+                    textIndex++;
+                    if (textIndex >= texts.length) {
+                        textIndex = 0;
+                    }
+                    setTimeout(type, typingSpeed);
+                }
+            }
+
+            type();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initTypewriter();
+        });
             
         
