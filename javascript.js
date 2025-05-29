@@ -26,10 +26,15 @@ var tablinks = document.getElementsByClassName("tab-links");
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = 80; // Adjust based on your header height
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
             });
         });
@@ -40,31 +45,72 @@ var tablinks = document.getElementsByClassName("tab-links");
             emailjs.init("YOUR_USER_ID");
         })();
 
-        // Update the form submission handler
+        // Enhanced form validation and submission
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
             
             const msg = document.getElementById('msg');
             const submitBtn = this.querySelector('button[type="submit"]');
+            const formInputs = this.querySelectorAll('input, textarea');
             
-            // Disable the submit button during processing
+            // Form validation
+            let isValid = true;
+            formInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.classList.add('error');
+                    showError(input, 'This field is required');
+                } else {
+                    input.classList.remove('error');
+                    clearError(input);
+                }
+                
+                // Email validation
+                if (input.type === 'email' && input.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(input.value.trim())) {
+                        isValid = false;
+                        input.classList.add('error');
+                        showError(input, 'Please enter a valid email address');
+                    }
+                }
+            });
+            
+            if (!isValid) {
+                msg.innerHTML = "Please fill all required fields correctly";
+                msg.style.color = "#ff004f";
+                return;
+            }
+            
+            // Disable the submit button and show loading state
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
             
             // Get form data
             const formData = {
-                name: this.querySelector('input[name="name"]').value,
-                email: this.querySelector('input[name="email"]').value,
-                message: this.querySelector('textarea[name="message"]').value,
+                name: this.querySelector('input[name="name"]').value.trim(),
+                email: this.querySelector('input[name="email"]').value.trim(),
+                message: this.querySelector('textarea[name="message"]').value.trim(),
                 to_email: 'muneebazam96@gmail.com'
             };
 
-            // Send the email using EmailJS
-            emailjs.send('default_service', 'YOUR_TEMPLATE_ID', formData)
+            // Send the email using EmailJS with timeout
+            const timeoutPromise = new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Request timeout')), 10000)
+            );
+
+            Promise.race([
+                emailjs.send('default_service', 'YOUR_TEMPLATE_ID', formData),
+                timeoutPromise
+            ])
                 .then(function() {
-                    msg.innerHTML = "Message sent successfully!";
+                    msg.innerHTML = "Message sent successfully! I'll get back to you soon.";
                     msg.style.color = "#61b752";
-                    event.target.reset(); // Reset the form
+                    event.target.reset();
+                    
+                    // Add success animation
+                    msg.classList.add('success-animation');
+                    setTimeout(() => msg.classList.remove('success-animation'), 2000);
                     
                     // Clear success message after 5 seconds
                     setTimeout(function() {
@@ -72,22 +118,30 @@ var tablinks = document.getElementsByClassName("tab-links");
                     }, 5000);
                 })
                 .catch(function(error) {
-                    msg.innerHTML = "Failed to send message. Please try again.";
-                    msg.style.color = "#ff004f";
                     console.error('Email error:', error);
+                    msg.innerHTML = error.message === 'Request timeout' 
+                        ? "Request timed out. Please try again."
+                        : "Failed to send message. Please try again.";
+                    msg.style.color = "#ff004f";
+                    
+                    // Add error animation
+                    msg.classList.add('error-animation');
+                    setTimeout(() => msg.classList.remove('error-animation'), 2000);
                 })
                 .finally(function() {
-                    // Re-enable the submit button
                     submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Message';
+                    submitBtn.innerHTML = 'Send Message';
                 });
         });
 
+        // Enhanced typewriter effect with professional text
         function initTypewriter() {
             const texts = [
                 "Muneeb Ur Rehman",
-                "Smart Contract Developer",
-                "Building Blockchain Solutions"
+                "Flutter App Developer",
+                "DSA Enthusiast",
+                "LeetCode Problem Solver",
+                
             ];
             let textIndex = 0;
             let charIndex = 0;
@@ -151,23 +205,100 @@ var tablinks = document.getElementsByClassName("tab-links");
             });
         }
 
-        function handleHeaderScroll() {
-            const nav = document.querySelector('nav');
-            const scrollThreshold = 100;
+        // Add intersection observer for scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > scrollThreshold) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections and elements with animation classes
+            document.querySelectorAll('.section, .animate-on-scroll').forEach(el => {
+                observer.observe(el);
             });
         }
 
+        // Enhanced header scroll with smooth transition
+        function handleHeaderScroll() {
+            const nav = document.querySelector('nav');
+            const scrollThreshold = 100;
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.scrollY;
+                
+                if (currentScroll > scrollThreshold) {
+                    nav.classList.add('scrolled');
+                    if (currentScroll > lastScroll) {
+                        nav.classList.add('nav-hidden');
+                    } else {
+                        nav.classList.remove('nav-hidden');
+                    }
+                } else {
+                    nav.classList.remove('scrolled', 'nav-hidden');
+                }
+                
+                lastScroll = currentScroll;
+            });
+        }
+
+        // Add loading animation
+        function initLoadingAnimation() {
+            const loader = document.querySelector('.loader');
+            if (loader) {
+                window.addEventListener('load', () => {
+                    loader.classList.add('fade-out');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
+                });
+            }
+        }
+
+        // Initialize all features
         document.addEventListener('DOMContentLoaded', function() {
             initTypewriter();
             handleScrollToTop();
             handleHeaderScroll();
+            initScrollAnimations();
+            initLoadingAnimation();
+            
+            // Add input focus effects
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('focused');
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.classList.remove('focused');
+                });
+            });
         });
+
+        // Utility functions for form validation
+        function showError(input, message) {
+            const errorDiv = input.parentElement.querySelector('.error-message') || 
+                document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            if (!input.parentElement.querySelector('.error-message')) {
+                input.parentElement.appendChild(errorDiv);
+            }
+        }
+
+        function clearError(input) {
+            const errorDiv = input.parentElement.querySelector('.error-message');
+            if (errorDiv) {
+                errorDiv.remove();
+            }
+        }
             
         
