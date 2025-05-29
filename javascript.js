@@ -138,10 +138,10 @@ var tablinks = document.getElementsByClassName("tab-links");
         function initTypewriter() {
             const texts = [
                 "Muneeb Ur Rehman",
-                "Flutter App Developer",
-                "DSA Enthusiast",
-                "LeetCode Problem Solver",
-                
+                "Software Engineering Student",
+                "Web Developer",
+                "Game Developer",
+                "AI Enthusiast"
             ];
             let textIndex = 0;
             let charIndex = 0;
@@ -264,11 +264,120 @@ var tablinks = document.getElementsByClassName("tab-links");
             }
         }
 
+        // Enhanced Navigation and Scrolling
+        function initNavigation() {
+            const nav = document.querySelector('nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navIndicator = document.querySelector('.nav-indicator');
+            const scrollProgress = document.createElement('div');
+            scrollProgress.className = 'scroll-progress';
+            document.body.appendChild(scrollProgress);
+
+            // Menu Toggle
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                document.querySelector('#sidemenu').classList.toggle('show');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('nav')) {
+                    menuToggle.classList.remove('active');
+                    document.querySelector('#sidemenu').classList.remove('show');
+                }
+            });
+
+            // Active link indicator
+            function updateActiveLink() {
+                const sections = document.querySelectorAll('section, #header');
+                const scrollPosition = window.scrollY + 100;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                                // Update indicator position
+                                const activeLink = link;
+                                navIndicator.style.width = `${activeLink.offsetWidth}px`;
+                                navIndicator.style.left = `${activeLink.offsetLeft}px`;
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Scroll progress bar
+            function updateScrollProgress() {
+                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (window.scrollY / windowHeight) * 100;
+                scrollProgress.style.transform = `scaleX(${progress / 100})`;
+            }
+
+            // Navbar scroll behavior
+            let lastScroll = 0;
+            function handleNavScroll() {
+                const currentScroll = window.scrollY;
+                
+                if (currentScroll > 100) {
+                    nav.classList.add('scrolled');
+                    if (currentScroll > lastScroll) {
+                        nav.style.transform = 'translateY(-100%)';
+                    } else {
+                        nav.style.transform = 'translateY(0)';
+                    }
+                } else {
+                    nav.classList.remove('scrolled');
+                    nav.style.transform = 'translateY(0)';
+                }
+                
+                lastScroll = currentScroll;
+            }
+
+            // Smooth scroll for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    const navHeight = nav.offsetHeight;
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - navHeight,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    menuToggle.classList.remove('active');
+                    document.querySelector('#sidemenu').classList.remove('show');
+                });
+            });
+
+            // Event listeners
+            window.addEventListener('scroll', () => {
+                updateActiveLink();
+                updateScrollProgress();
+                handleNavScroll();
+            });
+
+            window.addEventListener('resize', updateActiveLink);
+            
+            // Initial call
+            updateActiveLink();
+            updateScrollProgress();
+        }
+
         // Initialize all features
         document.addEventListener('DOMContentLoaded', function() {
             initTypewriter();
+            initNavigation();
             handleScrollToTop();
-            handleHeaderScroll();
             initScrollAnimations();
             initLoadingAnimation();
             

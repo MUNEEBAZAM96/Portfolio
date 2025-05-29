@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Webpage</title>
+    <meta name="description" content="Muneeb Ur Rehman - Flutter App Developer & DSA Enthusiast Portfolio. Specializing in mobile app development and problem-solving.">
+    <meta name="keywords" content="Flutter Developer, App Developer, DSA, LeetCode, Mobile Development, Portfolio">
+    <meta name="author" content="Muneeb Ur Rehman">
+    <meta property="og:title" content="Muneeb Ur Rehman - Portfolio">
+    <meta property="og:description" content="Flutter App Developer & DSA Enthusiast Portfolio">
+    <meta property="og:image" content="images/My.jpg">
+    <meta property="og:url" content="https://your-portfolio-url.com">
+    <title>Muneeb Ur Rehman | Flutter Developer & DSA Enthusiast</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9bd8c2a478.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
     <div id="header">
         <div class="floating-shapes">
             <div class="shape"></div>
@@ -17,103 +36,132 @@
         </div>
         <div class="container">
             <nav>
-                <img src="images/logo_Muneeb.jpg" class="logo" alt="Logo">
-                <ul>
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <div class="nav-brand">
+                    <a href="#header">MR</a>
+                </div>
+                <ul id="sidemenu">
+                    <li><a href="#header" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <div class="nav-indicator"></div>
                 </ul>
+                <div class="nav-buttons">
+                    <a href="https://github.com/yourusername" target="_blank" class="nav-social">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/" target="_blank" class="nav-social">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </nav>
             <div class="header-text">
-                <br>
-                <h1 style="color:#fff; font-family:Poppins">
+                <h1>
                     <span id="typewriter"></span>
-                    <span id="cursor" style="color: crimson;">|</span>
+                    <span id="cursor">|</span>
                 </h1>
+                <p class="subtitle">Crafting Beautiful Mobile Experiences with Flutter</p>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn primary-btn">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn secondary-btn">
+                        <span>Get in Touch</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </a>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <div>
+                        <span class="scroll-text">Scroll to Explore</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!--- ---------about--------  -->
-    <div id="about">
+
+    <!-- About Section -->
+    <div id="about" class="section animate-on-scroll">
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="images/My.jpg" alt="">
+                    <img src="images/My.jpg" alt="Muneeb Ur Rehman - Flutter Developer">
                 </div>
                 <div class="about-col-2">
-                    <h1 class="sub-title">
-                        About Me
-                    </h1>
-                    <p>
-                        am a versatile Block chain Developer and  Web3 Developer with a strong foundation in solidity(Smart Contract). In the realm of game development, I specialize in using GLUT and SFML to create interactive and visually compelling games. My expertise includes implementing game mechanics, rendering graphics, and optimizing performance to deliver smooth and immersive gaming experiences.
-
-                        As a Front-End Developer, I have a deep understanding of HTML and CSS, with a particular focus on CSS animations. I excel at bringing web designs to life, creating responsive, dynamic, and visually appealing websites. My ability to blend technical skills in both game development and front-end design allows me to craft engaging experiences across different digital platforms.
+                    <h1 class="sub-title">About Me</h1>
+                    <p class="about-text">
+                        I am a passionate Flutter App Developer with a strong foundation in Data Structures and Algorithms. 
+                        My journey in software development is driven by a love for creating intuitive mobile applications 
+                        and solving complex programming challenges. With expertise in Flutter development and a proven 
+                        track record in competitive programming, I bring both technical excellence and creative problem-solving 
+                        to every project.
                     </p>
 
                     <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('Services')">Education</p>
-                        <p class="tab-links" onclick="opentab('Customers')">Skills</p>
-                        <p class="tab-links" onclick="opentab('Education')">Certification</p>
+                        <p class="tab-links active-link" onclick="opentab('education')">Education</p>
+                        <p class="tab-links" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('certifications')">Certifications</p>
                     </div>
- 
-                    <div class="tab-contents active-tab" id="Services">
+
+                    <div class="tab-contents active-tab" id="education">
                         <ul>
                             <li>
-                                <span>Editing</span><br> Comprehensive editing services
+                                <span>Bachelor's in Software Engineering</span><br>
+                                FAST National University of Computer and Emerging Sciences<br>
+                                Expected Graduation: June 2027<br>
+                                Islamabad, Pakistan
                             </li>
                             <li>
-                                <span>SEO</span><br> SEO-focused content and copywriting
-                            </li>
-                            <li>
-                                <span>Evaluation</span><br> Manuscript evaluation
-                            </li>
-                            <li>
-                                <span>Review</span><br> Sensitivity review
-                            </li>
-                            <li>
-                                <span>Auditing</span><br> Website SEO audit
+                                <span>Infym AI Training and Hackathon</span><br>
+                                INFYM<br>
+                                September 2024
                             </li>
                         </ul>
                     </div>
 
-                    <div class="tab-contents" id="Customers">
+                    <div class="tab-contents" id="skills">
                         <ul>
                             <li>
-                                <span>Editing</span><br> Comprehensive editing services
+                                <span>Programming Languages</span><br>
+                                JavaScript, C++, Python
                             </li>
                             <li>
-                                <span>SEO</span><br> SEO-focused content and copywriting
+                                <span>Software & Tools</span><br>
+                                n8n, AppWrite, Firebase, Git, Bash, GitHub
                             </li>
                             <li>
-                                <span>Evaluation</span><br> Manuscript evaluation
+                                <span>Frameworks</span><br>
+                                React.js, Node.js, Next.js, TypeScript, Tailwind CSS
                             </li>
                             <li>
-                                <span>Revi</span><br> Sensitivity review
-                            </li>
-                            <li>
-                                <span>Auditing</span><br> Website SEO audit
+                                <span>Game Development</span><br>
+                                Unity, C#, SFML
                             </li>
                         </ul>
                     </div>
 
-                    <div class="tab-contents" id="Education">
+                    <div class="tab-contents" id="certifications">
                         <ul>
                             <li>
-                                <span>Editing</span><br> Comprehensive editing services
+                                <span>Infym AI Training and Hackathon</span><br>
+                                INFYM - September 2024
                             </li>
                             <li>
-                                <span>SEO</span><br> SEO-focused content and copywriting
-                            </li>
-                            <li>
-                                <span>Evaluation</span><br> Manuscript evaluation
-                            </li>
-                            <li>
-                                <span>Review</span><br> Sensitivity review
-                            </li>
-                            <li>
-                                <span>Audting</span><br> Website SEO audit
+                                <span>LeetCode Profile</span><br>
+                                Active Problem Solver - June 2024
                             </li>
                         </ul>
                     </div>
@@ -121,199 +169,176 @@
             </div>
         </div>
     </div>
-    <!-- My Services -->
-     <div id="services">
-        <div class="container">
-            <h1 class="sub-title"> My Services </h1>
-            <div class="serviceslist">
-                <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>Web Design</h2>
-                    <p> Discription will be Written here </p>
-                    <a href="#">Learn More</a>
-                </div>
-                <div>
-                    <i class="fa-brands fa-apple"></i>
-                    <h2>App Design Design</h2>
-                    <p> 
-                        Discription Will be Written Here 
-                    </p>
-                    <a href="#">Learn More</a>
-                </div>
-                <div>
-                    <i class="fas fa-crop-alt"></i>
-                    <h2>UI/UX</h2>
-                    <p> 
-                        Discription Will be Written Here 
-                    </p>
-                    <a href="#">Learn More</a>
-                </div>
-            </div>
-        </div>
-        </div>
 
-        <!-- Portfolio -->
-        <div id="portfolio">
-            <div class="container">
-                <h1 class="subtitle"> My Work  </h1>
-                <div class="worklist">
-                    <div class="work-1">
-                        <img src="images/work-1.png" alt="">
-                        <div class="layer">
-                            <h3>
-                                Bussiness Web sites 
-                            </h3>
-                            <p>
-                                I work on Various Business Web sites.
-                                In Recent Times. I Build a cloth Web Site For the Clients.
-                                you Can See it By Clicking on the link.
-                            </p>
-                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <div class="work-1">
-                        <img src="images/work-2.png" alt="">
-                        <div class="layer">
-                            <h3>
-                                Bussiness Web sites 
-                            </h3>
-                            <p>
-                                I work on Various Business Web sites.
-                                In Recent Times. I Build a cloth Web Site For the Clients.
-                                you Can See it By Clicking on the link.
-                            </p>
-                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <div class="work-1">
-                        <img src="images/work-3.png" alt="">
-                        <div class="layer">
-                            <h3>
-                                Bussiness Web sites 
-                            </h3>
-                            <p>
-                                I work on Various Business Web sites.
-                                In Recent Times. I Build a cloth Web Site For the Clients.
-                                you Can See it By Clicking on the link.
-                            </p>
-                            <a href="file:///C:/Users/muneeb%20ur%20rehman/Desktop/Web%20Paractice/My%20Portfolio/Web%20site/index.html"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
+    <!-- Services Section -->
+    <div id="services" class="section animate-on-scroll">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="serviceslist">
+                <div class="service-card">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <h2>Mobile App Development</h2>
+                    <p>
+                        Creating beautiful, responsive, and high-performance mobile applications 
+                        using Flutter framework. From concept to deployment, I ensure your app 
+                        stands out in the market.
+                    </p>
+                    <a href="#portfolio" class="learn-more">View Projects <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="btn">
-                    <a href=""> See More </a>
+                <div class="service-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Development</h2>
+                    <p>
+                        Specializing in modern web development using React.js, Next.js, and TypeScript.
+                        Creating responsive, performant web applications with cutting-edge technologies.
+                    </p>
+                    <a href="#portfolio" class="learn-more">View Projects <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <h2>Game Development</h2>
+                    <p>
+                        Experienced in game development using Unity and C#. Creating engaging game mechanics
+                        and optimizing user experience for interactive gaming applications.
+                    </p>
+                    <a href="#portfolio" class="learn-more">View Projects <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-robot"></i>
+                    <h2>AI Integration</h2>
+                    <p>
+                        Implementing AI solutions using Gemini API for intelligent recommendations,
+                        chatbots, and voice-based interactions in web applications.
+                    </p>
+                    <a href="#portfolio" class="learn-more">View Projects <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-    <!-- ------------------------------  Contact Me -------------------->
-    <div id="contact">
+    </div>
+
+    <!-- Portfolio Section -->
+    <div id="portfolio" class="section animate-on-scroll">
+        <div class="container">
+            <h1 class="sub-title">Featured Projects</h1>
+            <div class="worklist">
+                <div class="work-card">
+                    <img src="images/work-1.png" alt="RealEstate AI Project">
+                    <div class="layer">
+                        <h3>RealEstate AI</h3>
+                        <p>
+                            A modern real estate platform with AI-powered property recommendations
+                            and interactive chatbots. Built with React.js, Next.js, TypeScript, and Tailwind CSS.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="images/work-2.png" alt="Taste Bud Genius Project">
+                    <div class="layer">
+                        <h3>Taste Bud Genius</h3>
+                        <p>
+                            An AI-powered meal planning application with voice input and automated
+                            grocery list generation. Built with React.js, Next.js, and AppWrite.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="images/work-3.png" alt="Tetris Game Project">
+                    <div class="layer">
+                        <h3>Tetris Game</h3>
+                        <p>
+                            A classic Tetris implementation in C++ using SFML library. Features
+                            smooth animations, piece rotation, and score tracking.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="Play Game"><i class="fas fa-gamepad"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn">
+                <a href="https://github.com/yourusername" target="_blank" class="view-more">View More Projects</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section animate-on-scroll">
         <div class="container">
             <div class="row">
                 <div class="contactleft">
-                        <h1 class="Sub-title">
-                            Contact Me 
-                        </h1>
-                        <p><i class="fas fa-paper-plane"></i> contact@example.com</p>
-                        <p><i class="fas fa-phone-square-alt"></i>09504634532</p>
-                        <div class="Socialicons">
-                            <a href=""><i class="fab fa-facebook"></i></a>
-                            <a href=""><i class="fab fa-twitter-square"></i></a>
-                            <a href="https://www.instagram.com/muneeb.rajpot.14/"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/"><i class="fab fa-linkedin"></i></a>
-                        </div>
-
-                        <a href="images/my-cv.pdf" download class="btn btn2">Download CV </a>
+                    <h1 class="sub-title">Get In Touch</h1>
+                    <p><i class="fas fa-paper-plane"></i> muneebazam96@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Islamabad, Pakistan</p>
+                    <div class="social-icons">
+                        <a href="https://github.com/yourusername" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://leetcode.com/yourusername" target="_blank" title="LeetCode">
+                            <i class="fas fa-code"></i>
+                        </a>
+                        <a href="https://www.instagram.com/muneeb.rajpot.14/" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <a href="https://docs.google.com/document/d/1QoEq-VUsrU5q3bcXgjgze2IsWmPmTGJrJO9p2JSMBO0/export?format=pdf" download="Muneeb_Ur_Rehman_CV.pdf" class="btn btn2">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
                 </div>
                 <div class="contactright">
-                    <h2>Feel Free To Ask</h2>
                     <form id="contact-form">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn btn2">Send Message</button>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                            <span class="focus-border"></span>
+                        </div>
+                        <button type="submit" class="btn btn2">
+                            <span class="btn-text">Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </form>
-                    <span id="msg"></span>
+                    <div id="msg" class="message"></div>
                 </div>
             </div>
         </div>
-        <div class="copywrite">
-            <p> copywrite <i class="fa-regular fa-copyright" style="color: #fff;"></i> <span style="color: #ff0045;"> kevin </span>. Made with <i class="fas fa-heart"></i> by easy Tutorials</p>
-        </div>
     </div>
 
-   <!-- JavaScript for Tabs -->
-<script src="javascript.js"></script> <!-- Use 'src' instead of 'href' -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                &copy; <span id="current-year"></span> Muneeb Ur Rehman. All rights reserved.
+                Made with <i class="fas fa-heart"></i> by Muneeb
+            </p>
+        </div>
+    </footer>
 
-<script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    function opentab(event, tabname) { // Pass event as a parameter
-        for (let tablink of tablinks) {
-            tablink.classList.remove("active-link");
-        }
-        for (let tabcontent of tabcontents) {
-            tabcontent.classList.remove("active-tab");
-        }
-        document.getElementById(tabname).classList.add("active-tab");
-        event.currentTarget.classList.add("active-link");
-    }
-
-    var sidemeu = document.getElementById("sidemeu");
-
-    function openmenu() {
-        sidemeu.style.right = "0";
-    }
-
-    function closemenu() {
-        sidemeu.style.right = "-200px";
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
-    });
-
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzIoXfl6r3oo8Izq3vTTYLNrGJJLRu9kf7oEEsbQTMtsVOONYpfEbIJLbO6X2Em0_iR/exec';
-    const form = document.forms['submit-to-google-sheet'];
-    const msg = document.getElementById("msg");
-
-    form.addEventListener('submit', e => {
-        e.preventDefault(); // Prevent the default form submission
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response => {
-                msg.innerHTML = "Message sent successfully";
-                setTimeout(function () {
-                    msg.innerHTML = "";
-                }, 5000);
-                form.reset(); // Reset the form after submission
-            })
-            .catch(error => console.error('Error!', error.message));
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const text = "Muneeb Ur Rehman\nFront End Developer, C++ Game Developer";
-        let index = 0;
-        const speed = 100; // Adjust typing speed here
-
-        function typeWriter() {
-            if (index < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, speed);
-            }
-        }
-
-        typeWriter();
-    });
-</script>
-<div class="scroll-to-top">
-    <i class="fas fa-arrow-up"></i>
-</div>
+    <script src="javascript.js"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
