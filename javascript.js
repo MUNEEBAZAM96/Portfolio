@@ -39,100 +39,115 @@ var tablinks = document.getElementsByClassName("tab-links");
             });
         });
 
-        // Initialize EmailJS
+        // Initialize EmailJS with proper error handling
         (function() {
-            // Replace these with your actual EmailJS user ID and template ID
-            emailjs.init("YOUR_USER_ID");
+            try {
+                // Replace with your actual EmailJS public key
+                emailjs.init("public_key_xxxxxxxxxxxxxxxxxxxxx");
+                console.log("EmailJS initialized successfully");
+            } catch (error) {
+                console.error("Failed to initialize EmailJS:", error);
+            }
         })();
 
-        // Enhanced form validation and submission
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Email sending functionality with enhanced error handling
+        function sendEmail(e) {
+            e.preventDefault();
             
+            const form = document.getElementById('contact-form');
             const msg = document.getElementById('msg');
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const formInputs = this.querySelectorAll('input, textarea');
-            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const originalBtnText = btnText.textContent;
+
             // Form validation
-            let isValid = true;
-            formInputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.classList.add('error');
-                    showError(input, 'This field is required');
-                } else {
-                    input.classList.remove('error');
-                    clearError(input);
-                }
-                
-                // Email validation
-                if (input.type === 'email' && input.value.trim()) {
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(input.value.trim())) {
-                        isValid = false;
-                        input.classList.add('error');
-                        showError(input, 'Please enter a valid email address');
-                    }
-                }
-            });
-            
-            if (!isValid) {
-                msg.innerHTML = "Please fill all required fields correctly";
-                msg.style.color = "#ff004f";
-                return;
+            const fromName = form.from_name.value.trim();
+            const replyTo = form.reply_to.value.trim();
+            const message = form.message.value.trim();
+
+            if (!fromName || !replyTo || !message) {
+                msg.innerHTML = "Please fill in all fields";
+                msg.className = 'message error';
+                msg.classList.add('error-animation');
+                setTimeout(() => msg.classList.remove('error-animation'), 2000);
+                return false;
             }
-            
-            // Disable the submit button and show loading state
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(replyTo)) {
+                msg.innerHTML = "Please enter a valid email address";
+                msg.className = 'message error';
+                msg.classList.add('error-animation');
+                setTimeout(() => msg.classList.remove('error-animation'), 2000);
+                return false;
+            }
+
+            // Show loading state
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
-            
+            btnText.textContent = 'Sending...';
+            submitBtn.classList.add('sending');
+
             // Get form data
-            const formData = {
-                name: this.querySelector('input[name="name"]').value.trim(),
-                email: this.querySelector('input[name="email"]').value.trim(),
-                message: this.querySelector('textarea[name="message"]').value.trim(),
+            const templateParams = {
+                from_name: fromName,
+                reply_to: replyTo,
+                message: message,
                 to_email: 'muneebazam96@gmail.com'
             };
 
-            // Send the email using EmailJS with timeout
-            const timeoutPromise = new Promise((_, reject) => 
-                setTimeout(() => reject(new Error('Request timeout')), 10000)
-            );
-
-            Promise.race([
-                emailjs.send('default_service', 'YOUR_TEMPLATE_ID', formData),
-                timeoutPromise
-            ])
-                .then(function() {
+            // Send email using EmailJS with enhanced error handling
+            emailjs.send('service_xxxxxxxxxxxxx', 'template_xxxxxxxxxxxxx', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    // Success
                     msg.innerHTML = "Message sent successfully! I'll get back to you soon.";
-                    msg.style.color = "#61b752";
-                    event.target.reset();
+                    msg.className = 'message success';
+                    form.reset();
                     
                     // Add success animation
                     msg.classList.add('success-animation');
                     setTimeout(() => msg.classList.remove('success-animation'), 2000);
                     
                     // Clear success message after 5 seconds
-                    setTimeout(function() {
-                        msg.innerHTML = "";
+                    setTimeout(() => {
+                        msg.innerHTML = '';
+                        msg.className = 'message';
                     }, 5000);
                 })
                 .catch(function(error) {
-                    console.error('Email error:', error);
-                    msg.innerHTML = error.message === 'Request timeout' 
-                        ? "Request timed out. Please try again."
-                        : "Failed to send message. Please try again.";
-                    msg.style.color = "#ff004f";
+                    console.error('FAILED...', error);
+                    let errorMessage = "Failed to send message. ";
+                    
+                    // More specific error messages based on the error type
+                    if (error.status === 0) {
+                        errorMessage += "Network error. Please check your internet connection.";
+                    } else if (error.status === 400) {
+                        errorMessage += "Invalid request. Please check your input.";
+                    } else if (error.status === 401) {
+                        errorMessage += "Authentication failed. Please contact the website administrator.";
+                    } else if (error.status === 500) {
+                        errorMessage += "Server error. Please try again later.";
+                    } else {
+                        errorMessage += "Please try again or contact me directly at muneebazam96@gmail.com";
+                    }
+                    
+                    msg.innerHTML = errorMessage;
+                    msg.className = 'message error';
                     
                     // Add error animation
                     msg.classList.add('error-animation');
                     setTimeout(() => msg.classList.remove('error-animation'), 2000);
                 })
                 .finally(function() {
+                    // Reset button state
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Send Message';
+                    btnText.textContent = originalBtnText;
+                    submitBtn.classList.remove('sending');
                 });
-        });
+
+            return false;
+        }
 
         // Enhanced typewriter effect with professional text
         function initTypewriter() {
