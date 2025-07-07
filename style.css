@@ -403,6 +403,32 @@ nav ul {
     background: var(--light-bg);
 }
 
+#about, #about *, .about-col-1, .about-col-2, .about-col-2 * {
+    color: var(--text-color) !important;
+}
+
+#about h2, #about .cert-title, #about .about-block strong {
+    background: linear-gradient(90deg, #ff004f 0%, #4a90e2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: background-position 0.7s cubic-bezier(0.4,0,0.2,1);
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+}
+#about h2:hover, #about .cert-title:hover, #about .about-block strong:hover {
+    background-position: 100% 50%;
+    animation: shimmerHeading 1.2s linear 1;
+}
+@keyframes shimmerHeading {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
 .section {
     padding: 100px 0;
     opacity: 0;

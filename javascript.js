@@ -637,3 +637,122 @@ var tablinks = document.getElementsByClassName("tab-links");
         });
             
         
+// --- Three.js Animated Background ---
+let threeRenderer, threeScene, threeCamera, threeMesh, threeAnimationId;
+
+function initThreeBg(isLight) {
+  const canvas = document.getElementById('three-bg-canvas');
+  if (!canvas) return;
+  // Dispose previous scene if any
+  if (threeRenderer) {
+    cancelAnimationFrame(threeAnimationId);
+    threeRenderer.dispose && threeRenderer.dispose();
+    canvas.width = canvas.width; // clear
+  }
+  // Setup
+  threeRenderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+  threeRenderer.setSize(window.innerWidth, window.innerHeight);
+  threeRenderer.setClearColor(isLight ? 0xf5f6fa : 0x0a0a23, 1);
+  threeScene = new THREE.Scene();
+  threeCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  threeCamera.position.z = 5;
+  // Create animated wave mesh
+  const geometry = new THREE.PlaneGeometry(10, 10, 32, 32);
+  const material = new THREE.MeshPhongMaterial({
+    color: isLight ? 0x4a90e2 : 0xff004f,
+    shininess: 80,
+    transparent: true,
+    opacity: 0.18,
+    side: THREE.DoubleSide
+  });
+  threeMesh = new THREE.Mesh(geometry, material);
+  threeScene.add(threeMesh);
+  // Lighting
+  const light = new THREE.PointLight(isLight ? 0x4a90e2 : 0xff004f, 1, 100);
+  light.position.set(0, 0, 10);
+  threeScene.add(light);
+  // Animate
+  function animate() {
+    for (let i = 0; i < geometry.vertices.length; i++) {
+      const v = geometry.vertices[i];
+      v.z = Math.sin(i + Date.now() * 0.001) * (isLight ? 0.08 : 0.18);
+    }
+    geometry.verticesNeedUpdate = true;
+    threeMesh.rotation.z += 0.0005;
+    threeRenderer.render(threeScene, threeCamera);
+    threeAnimationId = requestAnimationFrame(animate);
+  }
+  animate();
+  window.addEventListener('resize', () => {
+    threeRenderer.setSize(window.innerWidth, window.innerHeight);
+    threeCamera.aspect = window.innerWidth / window.innerHeight;
+    threeCamera.updateProjectionMatrix();
+  });
+}
+
+// --- particles.js Animated Background ---
+function loadParticlesConfig(isLight) {
+  particlesJS('particles-js', isLight ? {
+    particles: {
+      number: { value: 60 },
+      color: { value: "#4a90e2" },
+      shape: { type: "circle" },
+      opacity: { value: 0.3 },
+      size: { value: 4 },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#4a90e2",
+        opacity: 0.2,
+        width: 1
+      },
+      move: { enable: true, speed: 2 }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: { onhover: { enable: true, mode: "repulse" } }
+    },
+    retina_detect: true
+  } : {
+    particles: {
+      number: { value: 80 },
+      color: { value: "#ff004f" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      line_linked: {
+        enable: true,
+        distance: 120,
+        color: "#ff004f",
+        opacity: 0.3,
+        width: 1
+      },
+      move: { enable: true, speed: 3 }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: { onhover: { enable: true, mode: "grab" } }
+    },
+    retina_detect: true
+  });
+}
+
+// --- Theme Switch Logic ---
+function updateBackgrounds() {
+  const isLight = document.body.classList.contains('light-mode');
+  // Remove old particles canvas
+  const oldCanvas = document.querySelector('#particles-js canvas');
+  if (oldCanvas) oldCanvas.remove();
+  loadParticlesConfig(isLight);
+  initThreeBg(isLight);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateBackgrounds();
+  const themeToggle = document.querySelector('.theme-toggle');
+  themeToggle.addEventListener('click', () => {
+    setTimeout(updateBackgrounds, 300); // Wait for theme class to apply
+  });
+});
+            
+        
