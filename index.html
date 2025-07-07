@@ -17,9 +17,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9bd8c2a478.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
+    <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></div>
     <!-- Loading Animation -->
     <div class="loader">
         <div class="loader-content">
@@ -29,6 +32,8 @@
     </div>
 
     <div id="header">
+        <canvas id="three-bg-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;"></canvas>
+        <div class="threejs-overlay"></div>
         <div class="floating-shapes">
             <div class="shape"></div>
             <div class="shape"></div>
@@ -48,10 +53,10 @@
                     <div class="nav-indicator"></div>
                 </ul>
                 <div class="nav-buttons">
-                    <a href="https://github.com/yourusername" target="_blank" class="nav-social">
+                    <a href="https://github.com/MUNEEBAZAM96" target="_blank" class="nav-social">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/" target="_blank" class="nav-social">
+                    <a href="https://www.linkedin.com/in/muneeb-ur-rehman14?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2DEjxiC5TfigWd091q13oA%3D%3D" target="_blank" class="nav-social">
                         <i class="fab fa-linkedin"></i>
                     </a>
                     <button class="theme-toggle" aria-label="Toggle theme">
@@ -66,10 +71,10 @@
             </nav>
             <div class="header-text">
                 <h1>
-                    <span id="typewriter"></span>
-                    <span id="cursor">|</span>
+                    <span id="typewriter"></span><span id="cursor">|</span>
+                    
                 </h1>
-                <p class="subtitle">Crafting Beautiful Mobile Experiences with Flutter</p>
+                <p class="subtitle">Crafting Web Apps with React.js and Node.js</p>
                 <div class="cta-buttons">
                     <a href="#portfolio" class="btn primary-btn">
                         <span>View My Work</span>
@@ -79,15 +84,6 @@
                         <span>Get in Touch</span>
                         <i class="fas fa-paper-plane"></i>
                     </a>
-                </div>
-                <div class="scroll-indicator">
-                    <div class="mouse">
-                        <div class="wheel"></div>
-                    </div>
-                    <div>
-                        <span class="scroll-text">Scroll to Explore</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -271,61 +267,23 @@
     </div>
 
     <!-- Contact Section -->
-    <div id="contact" class="section animate-on-scroll">
-        <div class="container">
-            <div class="row">
-                <div class="contactleft">
-                    <h1 class="sub-title">Get In Touch</h1>
-                    <p><i class="fas fa-paper-plane"></i> muneebazam96@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Islamabad, Pakistan</p>
-                    <div class="social-icons">
-                        <a href="https://github.com/yourusername" target="_blank" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/muneeb-rehman-52b062258/" target="_blank" title="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://leetcode.com/yourusername" target="_blank" title="LeetCode">
-                            <i class="fas fa-code"></i>
-                        </a>
-                        <a href="https://www.instagram.com/muneeb.rajpot.14/" target="_blank" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                    <a href="https://docs.google.com/document/d/1QoEq-VUsrU5q3bcXgjgze2IsWmPmTGJrJO9p2JSMBO0/export?format=pdf" download="Muneeb_Ur_Rehman_CV.pdf" class="btn btn2">
-                        <i class="fas fa-download"></i> Download CV
-                    </a>
-                </div>
-                <div class="contactright">
-                    <form action="https://formsubmit.co/muneebazam96@gmail.com" method="POST" id="contact-form">
-                        <!-- Honeypot to prevent spam -->
-                        <input type="text" name="_honey" style="display:none">
-                        <!-- Disable Captcha -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <!-- Custom success page -->
-                        <input type="hidden" name="_next" value="https://your-portfolio-url.com/thanks.html">
-                        
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                            <span class="focus-border"></span>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
-                            <span class="focus-border"></span>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-                            <span class="focus-border"></span>
-                        </div>
-                        <button type="submit" class="btn btn2">
-                            <span class="btn-text">Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                    <div id="msg" class="message"></div>
-                </div>
-            </div>
+    <div id="contact" class="section contact-section">
+      <div class="contact-card">
+        <div class="contact-info">
+          <h2 class="contact-title">Let's Connect</h2>
+          <div class="contact-socials">
+            <a href="https://github.com/MUNEEBAZAM96" target="_blank" class="contact-social" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/muneeb-ur-rehman14" target="_blank" class="contact-social" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://leetcode.com/yourusername" target="_blank" class="contact-social" title="LeetCode"><i class="fas fa-code"></i></a>
+            <a href="https://www.instagram.com/muneeb.rajpot.14/" target="_blank" class="contact-social" title="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <a href="https://docs.google.com/document/d/1QoEq-VUsrU5q3bcXgjgze2IsWmPmTGJrJO9p2JSMBO0/edit?tab=t.0" target="_blank" class="btn btn-cv"><i class="fas fa-download"></i> Download CV</a>
         </div>
+        <div class="contact-message">
+          <textarea id="message-box" placeholder="Type your message..."></textarea>
+          <button id="send-message" class="btn btn-send"><span>Send Message</span> <i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
     </div>
 
     <footer class="footer">

@@ -149,58 +149,6 @@ var tablinks = document.getElementsByClassName("tab-links");
             return false;
         }
 
-        // Enhanced typewriter effect with professional text
-        function initTypewriter() {
-            const texts = [
-                "Muneeb Ur Rehman",
-                "Software Engineering Student",
-                "Web Developer",
-                "Game Developer",
-                "AI Enthusiast"
-            ];
-            let textIndex = 0;
-            let charIndex = 0;
-            const typewriterElement = document.getElementById("typewriter");
-            const cursorElement = document.getElementById("cursor");
-            const typingSpeed = 100;
-            const deleteSpeed = 50;
-            const delayBetweenTexts = 2000;
-
-            function type() {
-                if (charIndex < texts[textIndex].length) {
-                    if (!cursorElement.classList.contains("typing")) {
-                        cursorElement.classList.add("typing");
-                    }
-                    typewriterElement.textContent += texts[textIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(type, typingSpeed);
-                } else {
-                    cursorElement.classList.remove("typing");
-                    setTimeout(erase, delayBetweenTexts);
-                }
-            }
-
-            function erase() {
-                if (charIndex > 0) {
-                    if (!cursorElement.classList.contains("typing")) {
-                        cursorElement.classList.add("typing");
-                    }
-                    typewriterElement.textContent = texts[textIndex].substring(0, charIndex - 1);
-                    charIndex--;
-                    setTimeout(erase, deleteSpeed);
-                } else {
-                    cursorElement.classList.remove("typing");
-                    textIndex++;
-                    if (textIndex >= texts.length) {
-                        textIndex = 0;
-                    }
-                    setTimeout(type, typingSpeed);
-                }
-            }
-
-            type();
-        }
-
         function handleScrollToTop() {
             const scrollBtn = document.querySelector('.scroll-to-top');
             
@@ -253,13 +201,8 @@ var tablinks = document.getElementsByClassName("tab-links");
                 
                 if (currentScroll > scrollThreshold) {
                     nav.classList.add('scrolled');
-                    if (currentScroll > lastScroll) {
-                        nav.classList.add('nav-hidden');
-                    } else {
-                        nav.classList.remove('nav-hidden');
-                    }
                 } else {
-                    nav.classList.remove('scrolled', 'nav-hidden');
+                    nav.classList.remove('scrolled');
                 }
                 
                 lastScroll = currentScroll;
@@ -342,14 +285,8 @@ var tablinks = document.getElementsByClassName("tab-links");
                 
                 if (currentScroll > 100) {
                     nav.classList.add('scrolled');
-                    if (currentScroll > lastScroll) {
-                        nav.style.transform = 'translateY(-100%)';
-                    } else {
-                        nav.style.transform = 'translateY(0)';
-                    }
                 } else {
                     nav.classList.remove('scrolled');
-                    nav.style.transform = 'translateY(0)';
                 }
                 
                 lastScroll = currentScroll;
@@ -390,7 +327,6 @@ var tablinks = document.getElementsByClassName("tab-links");
 
         // Initialize all features
         document.addEventListener('DOMContentLoaded', function() {
-            initTypewriter();
             initNavigation();
             handleScrollToTop();
             initScrollAnimations();
@@ -405,6 +341,36 @@ var tablinks = document.getElementsByClassName("tab-links");
                     input.parentElement.classList.remove('focused');
                 });
             });
+
+            // Navbar scroll animation
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Popup on send for new contact section
+            const sendBtn = document.getElementById('send-message');
+            const messageBox = document.getElementById('message-box');
+            if (sendBtn && messageBox) {
+                sendBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Show popup
+                    let popup = document.createElement('div');
+                    popup.className = 'message-popup';
+                    popup.innerHTML = '<span class="popup-icon">✔️</span>Message sent!<br>Thank you for reaching out.';
+                    document.body.appendChild(popup);
+                    setTimeout(() => {
+                        popup.style.opacity = '0';
+                        popup.style.transform = 'translateX(-50%) scale(0.9)';
+                        setTimeout(() => popup.remove(), 400);
+                    }, 3000);
+                    messageBox.value = '';
+                });
+            }
         });
 
         // Utility functions for form validation
@@ -424,5 +390,250 @@ var tablinks = document.getElementsByClassName("tab-links");
                 errorDiv.remove();
             }
         }
+            
+        
+        // Three.js animated background for header
+        function initThreeHeroBackground() {
+            const canvas = document.getElementById('three-bg-canvas');
+            if (!canvas) return;
+            const header = document.getElementById('header');
+            function resizeCanvas() {
+                // Only resize if the window size changes, not on scroll
+                canvas.width = header.offsetWidth;
+                canvas.height = header.offsetHeight;
+                renderer.setSize(canvas.width, canvas.height, false);
+                camera.aspect = canvas.width / canvas.height;
+                camera.updateProjectionMatrix();
+            }
+
+            // Three.js setup
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setClearColor(0x000000, 0);
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, header.offsetWidth / header.offsetHeight, 0.1, 1000);
+            camera.position.z = 13;
+            camera.position.y = 2;
+            renderer.setSize(header.offsetWidth, header.offsetHeight, false);
+
+            // Network Nodes
+            const nodeCount = 18;
+            const nodes = [];
+            const nodeGeometry = new THREE.SphereGeometry(0.18, 24, 24);
+            const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0xff004f, emissive: 0x4a90e2, emissiveIntensity: 0.5 });
+            for (let i = 0; i < nodeCount; i++) {
+                const mesh = new THREE.Mesh(nodeGeometry, nodeMaterial.clone());
+                mesh.position.set(
+                    (Math.random() - 0.5) * 10,
+                    (Math.random() - 0.5) * 5,
+                    (Math.random() - 0.5) * 6
+                );
+                mesh.userData = {
+                    base: mesh.position.clone(),
+                    phase: Math.random() * Math.PI * 2,
+                    speed: 0.5 + Math.random() * 0.7
+                };
+                scene.add(mesh);
+                nodes.push(mesh);
+            }
+
+            // Network Lines
+            const lines = [];
+            for (let i = 0; i < nodeCount; i++) {
+                for (let j = i + 1; j < nodeCount; j++) {
+                    if (Math.random() < 0.22) { // sparse connections
+                        const geometry = new THREE.BufferGeometry().setFromPoints([
+                            nodes[i].position,
+                            nodes[j].position
+                        ]);
+                        const material = new THREE.LineBasicMaterial({ color: 0x4a90e2, transparent: true, opacity: 0.5 });
+                        const line = new THREE.Line(geometry, material);
+                        scene.add(line);
+                        lines.push({ line, i, j });
+                    }
+                }
+            }
+
+            // Floating Code Cards
+            const cardGeometry = new THREE.BoxGeometry(1.8, 1, 0.08);
+            const cardMaterial = new THREE.MeshStandardMaterial({ color: 0x181828, emissive: 0x4a90e2, emissiveIntensity: 0.12, metalness: 0.3, roughness: 0.7 });
+            const cards = [];
+            const cardSymbols = ['< />', '{ }', 'JS', 'AI'];
+            for (let i = 0; i < 3; i++) {
+                const mesh = new THREE.Mesh(cardGeometry, cardMaterial.clone());
+                mesh.position.set(
+                    (Math.random() - 0.5) * 8,
+                    2 + Math.random() * 2,
+                    (Math.random() - 0.5) * 5
+                );
+                mesh.userData = {
+                    rotSpeed: 0.003 + Math.random() * 0.004,
+                    symbol: cardSymbols[i % cardSymbols.length]
+                };
+                scene.add(mesh);
+                cards.push(mesh);
+            }
+
+            // Add 2D symbols to cards using canvas textures
+            cards.forEach((card, idx) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 256; canvas.height = 128;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#181828';
+                ctx.fillRect(0, 0, 256, 128);
+                ctx.font = 'bold 56px Poppins, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = '#ff004f';
+                ctx.fillText(cardSymbols[idx % cardSymbols.length], 128, 64);
+                const texture = new THREE.CanvasTexture(canvas);
+                card.material.map = texture;
+                card.material.needsUpdate = true;
+            });
+
+            // Lighting
+            const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambient);
+            const point1 = new THREE.PointLight(0xff004f, 0.7, 30);
+            point1.position.set(-6, 8, 8);
+            scene.add(point1);
+            const point2 = new THREE.PointLight(0x4a90e2, 0.7, 30);
+            point2.position.set(6, 8, 8);
+            scene.add(point2);
+
+            // Animation loop
+            function animate(time) {
+                requestAnimationFrame(animate);
+                // Animate nodes
+                nodes.forEach((node, i) => {
+                    node.position.x = node.userData.base.x + Math.sin(time * 0.0006 + node.userData.phase) * 0.5;
+                    node.position.y = node.userData.base.y + Math.cos(time * 0.0007 + node.userData.phase) * 0.4;
+                    node.position.z = node.userData.base.z + Math.sin(time * 0.0005 + node.userData.phase) * 0.3;
+                });
+                // Animate lines
+                lines.forEach(({ line, i, j }) => {
+                    line.geometry.setFromPoints([
+                        nodes[i].position,
+                        nodes[j].position
+                    ]);
+                    line.geometry.attributes.position.needsUpdate = true;
+                });
+                // Animate cards
+                cards.forEach((card, i) => {
+                    card.rotation.y += card.userData.rotSpeed;
+                    card.position.y += Math.sin(time * 0.001 + i) * 0.003;
+                });
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        // Typewriter animation for header
+        function initTypewriter() {
+            const texts = [
+                "Muneeb",
+                "Software Engineering Student",
+                "Web Developer",
+                "Web3 Enthusiast"
+            ];
+            let textIndex = 0;
+            let charIndex = 0;
+            const typewriterElement = document.getElementById("typewriter");
+            const cursorElement = document.getElementById("cursor");
+            const typingSpeed = 100;
+            const deleteSpeed = 50;
+            const delayBetweenTexts = 1800;
+
+            function type() {
+                if (charIndex < texts[textIndex].length) {
+                    if (!cursorElement.classList.contains("typing")) {
+                        cursorElement.classList.add("typing");
+                    }
+                    typewriterElement.textContent += texts[textIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    cursorElement.classList.remove("typing");
+                    setTimeout(erase, delayBetweenTexts);
+                }
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                    if (!cursorElement.classList.contains("typing")) {
+                        cursorElement.classList.add("typing");
+                    }
+                    typewriterElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, deleteSpeed);
+                } else {
+                    cursorElement.classList.remove("typing");
+                    textIndex++;
+                    if (textIndex >= texts.length) {
+                        textIndex = 0;
+                    }
+                    setTimeout(type, typingSpeed);
+                }
+            }
+
+            type();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
+            handleScrollToTop();
+            initScrollAnimations();
+            initLoadingAnimation();
+            if (window.particlesJS) {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 60, density: { enable: true, value_area: 900 } },
+                        color: { value: ['#ff004f', '#4a90e2', '#ffffff'] },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.7, random: true },
+                        size: { value: 4, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 140,
+                            color: '#ffffff',
+                            opacity: 0.25,
+                            width: 1.2
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: 'none',
+                            random: true,
+                            straight: false,
+                            out_mode: 'out',
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' },
+                            resize: true
+                        },
+                        modes: {
+                            grab: { distance: 180, line_linked: { opacity: 0.45 } },
+                            push: { particles_nb: 4 }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+            
+            // Add input focus effects
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('focused');
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.classList.remove('focused');
+                });
+            });
+            initTypewriter();
+        });
             
         
