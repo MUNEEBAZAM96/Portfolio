@@ -22,6 +22,31 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
+    <nav>
+        <div class="nav-brand">
+            <a href="#header">MR</a>
+        </div>
+        <ul id="sidemenu">
+            <li><a href="#header" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#portfolio" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <div class="nav-indicator"></div>
+        </ul>
+        <div class="nav-buttons">
+            <a href="https://github.com/MUNEEBAZAM96" target="_blank" class="nav-social">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/muneeb-ur-rehman14?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2DEjxiC5TfigWd091q13oA%3D%3D" target="_blank" class="nav-social">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu"></button>
+    </nav>
     <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></div>
     <!-- Loading Animation -->
     <div class="loader">
@@ -31,63 +56,37 @@
         </div>
     </div>
 
-    <div id="header">
-        <canvas id="three-bg-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;"></canvas>
-        <div class="threejs-overlay"></div>
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
+    <!-- Hero Section with 3D Animation and Lottie background, now containing main headline and buttons -->
+    <section class="hero hero-full-bg animate-fade-in" id="hero">
+      <div class="animated-gradient-bg"></div>
+      <canvas id="three-bg" style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:1;pointer-events:none;"></canvas>
+      <lottie-player
+        src="https://assets2.lottiefiles.com/packages/lf20_tno6cg2w.json"
+        background="transparent"
+        speed="1"
+        style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:2;pointer-events:none;opacity:0.32;"
+        loop
+        autoplay
+      ></lottie-player>
+      <div class="hero-overlay"></div>
+      <div class="hero-text-overlay"></div>
+      <div class="hero-content hero-content-overlay">
+        <h1 class="hero-headline animate-hero-headline">
+          <span class="hero-line hero-line1">Web3 Enthusiast<span class="highlight typewriter-gradient" id="hero-typewriter"></span></span>
+        </h1>
+        <p class="subtitle">Crafting Web Apps with React.js and Node.js</p>
+        <div class="cta-buttons">
+          <a href="#portfolio" class="btn primary-btn">
+            <span>View My Work</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#contact" class="btn secondary-btn">
+            <span>Get in Touch</span>
+            <i class="fas fa-paper-plane"></i>
+          </a>
         </div>
-        <div class="container">
-            <nav>
-                <div class="nav-brand">
-                    <a href="#header">MR</a>
-                </div>
-                <ul id="sidemenu">
-                    <li><a href="#header" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#portfolio" class="nav-link">Projects</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <div class="nav-indicator"></div>
-                </ul>
-                <div class="nav-buttons">
-                    <a href="https://github.com/MUNEEBAZAM96" target="_blank" class="nav-social">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/muneeb-ur-rehman14?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2DEjxiC5TfigWd091q13oA%3D%3D" target="_blank" class="nav-social">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <button class="theme-toggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-                <button class="menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-            <div class="header-text">
-                <h1>
-                    <span id="typewriter"></span><span id="cursor">|</span>
-                    
-                </h1>
-                <p class="subtitle">Crafting Web Apps with React.js and Node.js</p>
-                <div class="cta-buttons">
-                    <a href="#portfolio" class="btn primary-btn">
-                        <span>View My Work</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#contact" class="btn secondary-btn">
-                        <span>Get in Touch</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+      </div>
+    </section>
 
     <!-- About Section -->
     <div id="about" class="section animate-on-scroll">
@@ -315,5 +314,109 @@
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
   });
 </script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script>
+    // Three.js Animated Mesh/Network Background for Hero Section
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('three-bg');
+      if (!canvas) return;
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setClearColor(0x000000, 0); // transparent
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+      camera.position.z = 70;
+      // --- Mesh points ---
+      const POINTS = 180;
+      const vertices = [];
+      for (let i = 0; i < POINTS; i++) {
+        const x = (Math.random() - 0.5) * 90;
+        const y = (Math.random() - 0.5) * 50;
+        const z = (Math.random() - 0.5) * 70;
+        vertices.push(x, y, z);
+      }
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+      // --- Animated color ---
+      let colorPhase = 0;
+      function getAnimatedColor() {
+        colorPhase += 0.01;
+        // Animate between #14b8a6 and #0ea5e9
+        const r = Math.floor(20 + 10 * Math.sin(colorPhase));
+        const g = Math.floor(184 + 40 * Math.sin(colorPhase + 1));
+        const b = Math.floor(166 + 70 * Math.sin(colorPhase + 2));
+        return (r << 16) | (g << 8) | b;
+      }
+      // --- Points with glow ---
+      const pointsMaterial = new THREE.PointsMaterial({
+        color: 0x14b8a6,
+        size: 2.2,
+        transparent: true,
+        opacity: 0.85
+      });
+      const points = new THREE.Points(geometry, pointsMaterial);
+      scene.add(points);
+      // --- Connecting lines ---
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x0ea5e9,
+        transparent: true,
+        opacity: 0.22
+      });
+      const lineGeometry = new THREE.BufferGeometry();
+      // Build lines between close points
+      const lineVertices = [];
+      const posArr = geometry.getAttribute('position');
+      for (let i = 0; i < POINTS; i++) {
+        for (let j = i + 1; j < POINTS; j++) {
+          const dx = posArr.getX(i) - posArr.getX(j);
+          const dy = posArr.getY(i) - posArr.getY(j);
+          const dz = posArr.getZ(i) - posArr.getZ(j);
+          const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+          if (dist < 22) { // connect if close
+            lineVertices.push(posArr.getX(i), posArr.getY(i), posArr.getZ(i));
+            lineVertices.push(posArr.getX(j), posArr.getY(j), posArr.getZ(j));
+          }
+        }
+      }
+      lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(lineVertices, 3));
+      const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+      scene.add(lines);
+      // --- Soft blur effect (CSS) ---
+      canvas.style.filter = 'blur(1.2px) drop-shadow(0 0 16px #14b8a6cc)';
+      // --- Mouse interactivity ---
+      let mouseX = 0, mouseY = 0;
+      let targetRotationX = 0, targetRotationY = 0;
+      let currentRotationX = 0, currentRotationY = 0;
+      document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        targetRotationX = mouseY * 0.3;
+        targetRotationY = mouseX * 0.3;
+      });
+      // --- Animate ---
+      function animate() {
+        requestAnimationFrame(animate);
+        // Animate mesh color
+        const animatedColor = getAnimatedColor();
+        pointsMaterial.color.setHex(animatedColor);
+        // Smooth mouse interaction
+        currentRotationX += (targetRotationX - currentRotationX) * 0.05;
+        currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+        // Animate mesh with mouse interaction
+        points.rotation.y += 0.0045 + currentRotationY * 0.001;
+        points.rotation.x += 0.0012 + currentRotationX * 0.001;
+        lines.rotation.y += 0.0045 + currentRotationY * 0.001;
+        lines.rotation.x += 0.0012 + currentRotationX * 0.001;
+        renderer.render(scene, camera);
+      }
+      animate();
+      // Responsive
+      window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+    });
+    </script>
 </body>
 </html>

@@ -756,3 +756,61 @@ document.addEventListener('DOMContentLoaded', function() {
 });
             
         
+// Animated typewriter effect for hero headline and subtitle
+(function() {
+  const headlineEl = document.querySelector('.hero-line1');
+  const typewriterEl = document.getElementById('hero-typewriter');
+  const subtitleEl = document.querySelector('.subtitle');
+
+  // Texts to animate
+  const headlineText = 'Web3 Enthusiast';
+  const subtitleText = 'Crafting Web Apps with React.js and Node.js';
+
+  // Clear initial content
+  if (headlineEl) headlineEl.innerHTML = '';
+  if (typewriterEl) typewriterEl.textContent = '';
+  if (subtitleEl) subtitleEl.textContent = '';
+
+  // Animate headline
+  function typeText(el, text, delay, done, highlightClass) {
+    let i = 0;
+    function type() {
+      el.innerHTML = highlightClass
+        ? text.substring(0, i) + '<span class="' + highlightClass + '" id="hero-typewriter"></span>'
+        : text.substring(0, i);
+      if (i < text.length) {
+        i++;
+        setTimeout(type, 70);
+      } else {
+        if (done) done();
+      }
+    }
+    setTimeout(type, delay);
+  }
+
+  // Animate subtitle
+  function typeSubtitle(el, text, delay) {
+    let i = 0;
+    function type() {
+      el.textContent = text.substring(0, i);
+      if (i < text.length) {
+        i++;
+        setTimeout(type, 32);
+      } else {
+        el.classList.add('fade-in');
+      }
+    }
+    setTimeout(type, delay);
+  }
+
+  // Start animation
+  if (headlineEl && subtitleEl) {
+    // Animate headline with highlight span at the end
+    typeText(headlineEl, headlineText, 400, function() {
+      // Animate subtitle after headline
+      typeSubtitle(subtitleEl, subtitleText, 400);
+    }, 'highlight typewriter-gradient');
+  }
+})();
+            
+        
